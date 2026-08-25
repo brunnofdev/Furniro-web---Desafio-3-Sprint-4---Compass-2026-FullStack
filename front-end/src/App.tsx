@@ -8,8 +8,10 @@ import { Home } from "./pages/Home";
 import { Shop } from "./pages/Shop";
 import { ProductDetail } from "./pages/ProductDetail";
 import { Cart } from "./pages/Cart";
-
 import { useCartStore } from "./store/useCartStore";
+
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
 
 function App() {
   useEffect(() => {
@@ -43,9 +45,14 @@ function App() {
 
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:category" element={<Shop />} />
-
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
+
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        
       </Routes>
 
       <Footer />

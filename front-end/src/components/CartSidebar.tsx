@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useCartStore } from "@store/useCartStore";
 import { formatPrice } from "@utils/formatPrice";
+import { toast } from "react-hot-toast";
 
 interface CartSidebarProps {
   isOpen: boolean;
@@ -23,6 +24,13 @@ export function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
   );
 
   const handleCheckout = () => {
+    if (items.length === 0) {
+      toast.error("Your cart is empty. Please add items to checkout.", {
+        style: { background: "#E97171", color: "#fff" },
+        iconTheme: { primary: "#fff", secondary: "#E97171" },
+      });;
+      return; 
+    }
     onClose();
     navigate("/checkout");
   };

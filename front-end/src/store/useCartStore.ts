@@ -29,7 +29,7 @@ export const useCartStore = create<CartState>()(
           set({
             items: currentItems.map((item) =>
               item.id === product.id
-                ? { ...item, quantity: Math.max(1, quantity)}
+                ? { ...item, quantity: item.quantity + quantity }
                 : item,
             ),
           });

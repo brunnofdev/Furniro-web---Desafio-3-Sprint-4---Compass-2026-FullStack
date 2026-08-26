@@ -6,9 +6,11 @@ import iconCart from "@assets/iconCart.svg";
 import { useCartStore } from "@store/useCartStore";
 import { UserMenu } from "../components/UserMenu";
 import { useAuth } from "../contexts/AuthContext";
+import { CartSidebar } from "../components/CartSidebar";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const hasCartItems = useCartStore((state) => state.items.length > 0);
 
   function closeMenu() {
@@ -93,7 +95,7 @@ export function Header() {
             <UserMenu />
             </div>
 
-            <Link to="/cart" className="relative">
+            <button onClick={() => setIsCartOpen(true)} className="relative">
               <img
                 src={iconCart}
                 alt="Carrinho"
@@ -103,7 +105,7 @@ export function Header() {
               {hasCartItems && (
                 <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white" />
               )}
-            </Link>
+            </button>
 
             {/* =========================================
                 BOTÃO HAMBURGER
@@ -204,6 +206,7 @@ export function Header() {
           </button>
         </nav>
       </aside>
+      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );
 }

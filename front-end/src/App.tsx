@@ -12,6 +12,8 @@ import { useCartStore } from "./store/useCartStore";
 
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Checkout } from "./pages/Checkout";
 
 function App() {
   useEffect(() => {
@@ -52,7 +54,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        
+        <Route element={<ProtectedRoute />}>
+          <Route path="/checkout" element={<Checkout />} />
+        </Route>
       </Routes>
 
       <Footer />

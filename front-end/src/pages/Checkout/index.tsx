@@ -36,17 +36,12 @@ export function Checkout() {
     const onSubmit = (data: CheckoutFormData) => {
 
         if (items.length === 0) {
-            toast.error("Your cart is empty. Please add items before placing an order.", {
-        style: { background: "#E97171", color: "#fff" },
-        iconTheme: { primary: "#fff", secondary: "#E97171" },
-        });
+            toast.error("Your cart is empty. Please add items before placing an order.");
             return;
         }
 
         console.log("Order placed:", data);
-        toast.success("Order placed successfully!", {
-        style: { background: "#2EC1AC", color: "#fff" },
-        });
+        toast.success("Order placed successfully!");
         clearCart();
         navigate("/");
     };

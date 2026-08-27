@@ -39,6 +39,28 @@ function App() {
         containerStyle={{
           top: 110,
         }}
+        toastOptions={{
+          success: {
+            style: {
+              background: '#2EC1AC',
+              color: '#fff',
+            },
+            iconTheme: {
+              primary: '#fff',
+              secondary: '#2EC1AC',
+            },
+          },
+          error: {
+            style: {
+              background: '#E97171',
+              color: '#fff',
+            },
+            iconTheme: {
+              primary: '#fff',
+              secondary: '#E97171',
+            },
+          },
+        }}
       />
 
       <Header />

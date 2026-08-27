@@ -16,25 +16,16 @@ export function Footer() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!email.trim()) {
-      toast.error("Please enter your email address.", {
-        style: { background: "#E97171", color: "#fff" },
-        iconTheme: { primary: "#fff", secondary: "#E97171" },
-      });
+      toast.error("Please enter your email address.");
       return;
     }
 
     if (!emailRegex.test(email)) {
-      toast.error("Please enter a valid email address.", {
-        style: { background: "#E97171", color: "#fff" },
-        iconTheme: { primary: "#fff", secondary: "#E97171" },
-      });
+      toast.error("Please enter a valid email address.");
       return;
     }
 
-    toast.success("Successfully subscribed!", {
-      style: { background: "#2EC1AC", color: "#fff" },
-      iconTheme: { primary: "#fff", secondary: "#2EC1AC" },
-    });
+    toast.success("Successfully subscribed!");
 
     setEmail("");
   };

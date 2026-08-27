@@ -17,16 +17,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
     addItem(product);
 
-    toast.success(`${product.name} added to cart!`, {
-      style: {
-        background: "#2EC1AC",
-        color: "#fff",
-      },
-      iconTheme: {
-        primary: "#fff",
-        secondary: "#2EC1AC",
-      },
-    });
+    toast.success(`${product.name} added to cart!`);
   };
 
   return (

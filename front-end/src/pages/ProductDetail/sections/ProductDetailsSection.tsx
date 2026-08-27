@@ -77,10 +77,7 @@ export function ProductDetailsSection() {
 
     addItem(productToCart, quantity);
     
-    toast.success(`${quantity}x ${product.name} added to cart!`, {
-      style: { background: "#2EC1AC", color: "#fff" },
-      iconTheme: { primary: "#fff", secondary: "#2EC1AC" },
-    });
+    toast.success(`${quantity}x ${product.name} added to cart!`);
   };
 
   if (loading) {

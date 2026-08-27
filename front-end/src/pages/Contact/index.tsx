@@ -22,9 +22,7 @@ export function Contact() {
   const onSubmit = (data: ContactFormData) => {
     console.log("Message data:", data);
     
-    toast.success("Message sent successfully!", {
-      style: { background: "#2EC1AC", color: "#fff" },
-    });
+    toast.success("Message sent successfully!");
     
     reset();
   };

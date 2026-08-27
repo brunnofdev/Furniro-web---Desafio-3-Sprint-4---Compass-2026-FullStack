@@ -25,10 +25,7 @@ export function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
 
   const handleCheckout = () => {
     if (items.length === 0) {
-      toast.error("Your cart is empty. Please add items to checkout.", {
-        style: { background: "#E97171", color: "#fff" },
-        iconTheme: { primary: "#fff", secondary: "#E97171" },
-      });;
+      toast.error("Your cart is empty. Please add items to checkout.");
       return; 
     }
     onClose();

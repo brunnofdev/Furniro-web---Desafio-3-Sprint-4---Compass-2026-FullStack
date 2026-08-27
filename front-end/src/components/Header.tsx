@@ -1,19 +1,35 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import logo from "@assets/logo.svg";
 import iconCart from "@assets/iconCart.svg";
-import iconProfile from "@assets/iconProfile.svg";
 import { useCartStore } from "@store/useCartStore";
+import { UserMenu } from "../components/UserMenu";
+import { useAuth } from "../contexts/AuthContext";
+import { CartSidebar } from "../components/CartSidebar";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const hasCartItems = useCartStore((state) => state.items.length > 0);
 
   function closeMenu() {
     setIsMenuOpen(false);
   }
 
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  function handleMobileProfileClick() {
+    closeMenu();
+    if (user) {
+      logout();
+      navigate("/login");
+    } else {
+      navigate("/login");
+    }
+  }
+  
   return (
     <>
       <header className="fixed top-0 left-0 z-[999] w-full bg-white transition-all flex justify-center shadow-sm h-[100px]">
@@ -74,13 +90,12 @@ export function Header() {
               AÇÕES
           ========================================= */}
           <div className="flex flex-1 items-center justify-end gap-5 lg:gap-[35px] text-[#000000]">
-            <img
-              src={iconProfile}
-              alt="Perfil"
-              className="w-6 lg:w-auto cursor-pointer hover:opacity-75 transition-opacity"
-            />
 
-            <Link to="/cart" className="relative">
+            <div className="hidden md:block">
+            <UserMenu />
+            </div>
+
+            <button onClick={() => setIsCartOpen(true)} className="relative">
               <img
                 src={iconCart}
                 alt="Carrinho"
@@ -90,7 +105,7 @@ export function Header() {
               {hasCartItems && (
                 <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white" />
               )}
-            </Link>
+            </button>
 
             {/* =========================================
                 BOTÃO HAMBURGER
@@ -183,22 +198,15 @@ export function Header() {
 
           <hr />
 
-          <Link
-            to="/cart"
-            onClick={closeMenu}
-            className="relative w-fit hover:text-[#B88E2F]"
+          <button 
+            onClick={handleMobileProfileClick} 
+            className={`text-left ${user ? "text-red-500 font-semibold" : "hover:text-[#B88E2F]"}`}
           >
-            Cart
-            {hasCartItems && (
-              <span className="absolute -right-4 top-1 h-2.5 w-2.5 rounded-full bg-red-500" />
-            )}
-          </Link>
-
-          <button className="text-left hover:text-[#B88E2F]">
-            Profile
+            {user ? "Logout" : "Login / Sign up"}
           </button>
         </nav>
       </aside>
+      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );
 }

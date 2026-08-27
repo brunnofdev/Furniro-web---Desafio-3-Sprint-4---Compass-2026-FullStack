@@ -8,8 +8,13 @@ import { Home } from "./pages/Home";
 import { Shop } from "./pages/Shop";
 import { ProductDetail } from "./pages/ProductDetail";
 import { Cart } from "./pages/Cart";
-
 import { useCartStore } from "./store/useCartStore";
+
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Checkout } from "./pages/Checkout";
+import { Contact } from "./pages/Contact";
 
 function App() {
   useEffect(() => {
@@ -34,6 +39,28 @@ function App() {
         containerStyle={{
           top: 110,
         }}
+        toastOptions={{
+          success: {
+            style: {
+              background: '#2EC1AC',
+              color: '#fff',
+            },
+            iconTheme: {
+              primary: '#fff',
+              secondary: '#2EC1AC',
+            },
+          },
+          error: {
+            style: {
+              background: '#E97171',
+              color: '#fff',
+            },
+            iconTheme: {
+              primary: '#fff',
+              secondary: '#E97171',
+            },
+          },
+        }}
       />
 
       <Header />
@@ -43,9 +70,17 @@ function App() {
 
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:category" element={<Shop />} />
-
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
+
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/contact" element={<Contact />} />
+        </Route>
       </Routes>
 
       <Footer />

@@ -1,4 +1,4 @@
-# Furniro E-Commerce | Compass UOL Challenge
+# Furniro E-Commerce | Compass UOL Challenge 3
 
 <div align="center">
 
@@ -7,6 +7,8 @@
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Zustand](https://img.shields.io/badge/Zustand-%23443E38.svg?style=for-the-badge&logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Zod](https://img.shields.io/badge/zod-%233068b7.svg?style=for-the-badge&logo=zod&logoColor=white)
+![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
 
 <br/>
 
@@ -21,7 +23,7 @@
 
 ## About The Project
 
-This project was developed as part of the **Challenge 2** for the Compass UOL Fellowship Program. It consists of a pixel-perfect recreation of **Furniro**, a modern e-commerce furniture interface, fully integrated with a custom RESTful API.
+This project was developed as part of the **Challenge 3** for the Compass UOL Fellowship Program. It consists of a pixel-perfect recreation of **Furniro**, a modern e-commerce furniture interface, fully integrated with a custom RESTful API.
 
 The goal was to deliver a robust, scalable, and responsive full-stack application, ensuring high performance and an intuitive user experience while adhering strictly to the provided Figma prototypes and business rules.
 
@@ -35,6 +37,9 @@ The goal was to deliver a robust, scalable, and responsive full-stack applicatio
 - **Checkout Simulation:** Cart manipulation (add, update quantity, remove) and checkout feedback using custom Toasts.
 - **Custom REST API:** Built from scratch using Node.js and TypeORM, seeding the SQLite database automatically upon startup.
 - **Fully Responsive:** Mobile-first approach tailored with Tailwind CSS for seamless navigation across all devices.
+- **Secure Authentication (JWT):** Full Login and Registration flow generating JSON Web Tokens to protect private routes (Checkout and Contact).
+- **Strict Form Validation:** Complex real-time data validation and error handling using React Hook Form and Zod schemas (No native HTML alerts used).
+- **Smart Checkout & Third-party APIs:** Automated address autofill via ViaCEP API integration, dynamic total calculations, and empty-cart route locking.
 
 ---
 
@@ -53,6 +58,8 @@ Built for speed and developer experience.
 - Zustand
 - Splide.js
 - React Hot Toast
+- Zod
+- React Hook Form
 
 ### Back-end (`/back-end`)
 
@@ -78,7 +85,7 @@ Make sure you have **Node.js (v18 or higher)** and **npm** installed on your mac
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Lucas-Folharini/Furniro-web---Desafio-2-Sprint-4---Compass-2026-FullStack.git
+https://github.com/brunnofdev/Furniro-web---Desafio-3-Sprint-4---Compass-2026-FullStack.git
 
 ```
 
@@ -121,6 +128,7 @@ Open this URL in your browser to explore **Furniro**.
 ---
 
 API Documentation: The backend API is documented using Swagger UI, which can be accessed interactively at
+
 ```text
 http://localhost:3000/docs
 ```
@@ -135,47 +143,45 @@ To ensure long-term maintainability, the project follows a strict architectural 
 📦 back-end
 ┣ 📂 public # Images used on products
 ┣ 📂 src
-┣ 📂 controllers # Request handlers (products.controller.ts)
-┣ 📂 database # Database configuration and seeding scripts (data-source.ts, seed.ts)
-┣ 📂 docs # Swagger API documentation configuration (swagger.ts)
-┣ 📂 dtos # Data Transfer Objects for request validation and response typing
-┣ 📂 entities # TypeORM database models (product.entity.ts)
-┣ 📂 routes # API route definitions (products.routes.ts)
-┣ 📂 services # Business logic and database interactions (products.service.ts)
-┣ 📂 shared # Shared resources, middlewares, and utility functions
-┣ 🗄️ furniro.sqlite # Local SQLite database file
-┗ 📜 server.ts # Main server entry point and application setup
+    ┣ 📂 controllers # Request handlers (products.controller.ts)
+    ┣ 📂 database # Database configuration and seeding scripts (data-source.ts, seed.ts)
+    ┣ 📂 docs # Swagger API documentation configuration (swagger.ts)
+    ┣ 📂 dtos # Data Transfer Objects for request validation and response typing
+    ┣ 📂 entities # TypeORM database models (product.entity.ts)
+    ┣ 📂 routes # API route definitions (products.routes.ts)
+    ┣ 📂 services # Business logic and database interactions (products.service.ts)
+    ┣ 📂 shared # Shared resources, middlewares, and utility functions
+    ┣ 🗄️ furniro.sqlite # Local SQLite database file
+    ┗ 📜 server.ts # Main server entry point and application setup
 ┗ 📜 db.json # Products info used on db seeding
 
 📦 front-end
 ┣ 📂 src
-┣ 📂 api # API integration and HTTP client configuration
-┣ 📂 assets # Static design images and visual assets from the frontend design
-┣ 📂 components # Reusable UI sections (Header, Footer, ProductCard, etc.)
-┣ 📂 pages # Page-level components (Cart, Home, ProductDetail, Shop)
-┣ 📂 store # Global state management
-┣ 📂 types # Type definitions and interfaces
-┣ 📂 utils # Helper functions and formatters
-┣ 📜 App.tsx # Main application routing and layout
-┣ 📜 index.css # Global styles
-┗ 📜 main.tsx # Main React application entry point
+    ┣ 📂 api # API integration and HTTP client configuration
+    ┣ 📂 assets # Static design images and visual assets from the frontend design
+    ┣ 📂 components # Reusable UI sections (Header, Footer, ProductCard, etc.)
+    ┣ 📂 contexts # Session contexts
+    ┣ 📂 pages # Page-level components (Cart, Home, ProductDetail, Shop)
+    ┣ 📂 schemas # Zod validation schemas
+    ┣ 📂 store # Global state management
+    ┣ 📂 types # Type definitions and interfaces
+    ┣ 📂 utils # Helper functions and formatters
+    ┣ 📜 App.tsx # Main application routing and layout
+    ┣ 📜 index.css # Global styles
+    ┗ 📜 main.tsx # Main React application entry point
 ```
 
 ---
 
 ## The Team
 
-This project was brought to life by a dedicated group:
+This project was brought to life by (Challenge 3):
 
-- Alana Ágne Brandão Rocha
 - Brunno Felipe Bezerra
-- Gustavo Siqueira De Lima
-- Lucas Folharini
-- Pedro Lucas Galdino Leite
 
 ---
 
-Workflow & Organization: We adopted a structured Git Flow using Conventional Commits for clear version control, while all project tasks and progress were managed through a board on Trello https://trello.com/b/ukK2h8hz/desafio-2-fellowship-squad-4.
+Workflow & Organization: We adopted a structured Git Flow using Conventional Commits for clear version control.
 
 ---
 

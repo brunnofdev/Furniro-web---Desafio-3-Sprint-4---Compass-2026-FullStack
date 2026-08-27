@@ -2,6 +2,13 @@ import * as z from "zod";
 
 const paymentOptions = ["bank_transfer", "cash_on_delivery"] as const;
 
+export const contactSchema = z.object({
+  name: z.string().min(2, "Name is required"),
+  email: z.string().email("A valid email is required"),
+  subject: z.string().optional(),
+  message: z.string().optional(),
+});
+
 export const checkoutSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
   lastName: z.string().min(2, "Last name is required"),
@@ -21,3 +28,5 @@ export const checkoutSchema = z.object({
 });
 
 export type CheckoutFormData = z.infer<typeof checkoutSchema>;
+
+export type ContactFormData = z.infer<typeof contactSchema>;

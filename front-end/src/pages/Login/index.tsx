@@ -50,7 +50,7 @@ export function Login() {
 
   return (
     <AuthLayout title="Login">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
         <div>
           <div className="relative flex items-center bg-gray-200">
             <input

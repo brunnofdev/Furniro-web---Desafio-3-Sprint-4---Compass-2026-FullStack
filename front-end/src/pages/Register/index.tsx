@@ -52,7 +52,7 @@ export function Register() {
 
   return (
     <AuthLayout title="Sign up">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
         <div>
           <input
             {...register("name")}

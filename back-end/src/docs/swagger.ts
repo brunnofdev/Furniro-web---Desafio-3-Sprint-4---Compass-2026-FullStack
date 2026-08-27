@@ -15,9 +15,101 @@ export const swaggerDocument = {
     {
       name: 'Products',
       description: 'Product browsing'
+    },
+    {
+      name: 'Auth',
+      description: 'Authentication operations (Login & Register)'
     }
   ],
   paths: {
+    '/auth/register': {
+      post: {
+        tags: ['Auth'],
+        summary: 'Register a new user',
+        description: 'Creates a new user account with name, email, and password.',
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  name: { type: 'string', example: 'Brunno' },
+                  email: { type: 'string', example: 'brunnodev@gmail.com' },
+                  password: { type: 'string', example: 'senhaSegura123' }
+                },
+                required: ['name', 'email', 'password']
+              }
+            }
+          }
+        },
+        responses: {
+          '201': {
+            description: 'User successfully registered',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    id: { type: 'string', example: 'b5aa3103-293a-4b83-bd30-a8218a47805a' },
+                    name: { type: 'string', example: 'Brunno' },
+                    email: { type: 'string', example: 'brunnodev@gmail.com' }
+                  }
+                }
+              }
+            }
+          },
+          '400': { description: 'Invalid input data or email already exists' }
+        }
+      }
+    },
+    '/auth/login': {
+      post: {
+        tags: ['Auth'],
+        summary: 'Login a user',
+        description: 'Authenticates a user and returns a JWT token.',
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  email: { type: 'string', example: 'brunnodev@gmail.com' },
+                  password: { type: 'string', example: 'senhaSegura123' }
+                },
+                required: ['email', 'password']
+              }
+            }
+          }
+        },
+        responses: {
+          '200': {
+            description: 'Login successful',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    token: { type: 'string', example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' },
+                    user: {
+                      type: 'object',
+                      properties: {
+                        id: { type: 'string', example: 'b5aa3103-293a-4b83-bd30-a8218a47805a' },
+                        name: { type: 'string', example: 'Brunno' },
+                        email: { type: 'string', example: 'brunnodev@gmail.com' }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          '401': { description: 'Invalid credentials' }
+        }
+      }
+    },
+
     '/products': {
       get: {
         tags: ['Products'],
